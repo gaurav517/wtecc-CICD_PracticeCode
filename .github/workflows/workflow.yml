@@ -26,9 +26,9 @@ jobs:
     steps:
       - name: Print
         env:
-          log_level: ${{ inputs.logLevel }}
+          loggingLevel: ${{ inputs.logLevel }}
         run: |
-          echo "Log level: $log_level"
+          echo "Log level: $loggingLevel"
 
       - name: Checkout
         uses: actions/checkout@v3
