@@ -1,6 +1,17 @@
 name: CI workflow
 
 on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
   push:
     branches:
       - main
@@ -13,6 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9-slim
     steps:
+      - name: Print
+        env:
+          log_level: ${{ inputs.logLevel }}
+        run: |
+          echo "Log level: $log_level"
+
       - name: Checkout
         uses: actions/checkout@v3
 
